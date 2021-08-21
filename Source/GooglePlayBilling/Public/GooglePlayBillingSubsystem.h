@@ -419,14 +419,6 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(
 	const FString&, ResponseMessage,
 	const TArray<FPurchaseRecord>&, PurchaseRecords);
 
-// TODO: add documentation:
-//							Terminology
-//							Integrate the library
-//							Sell subscriptions?
-//							Test your integration
-//							
-// TODO: update description in README.md
-// TODO: update description in plugin
 // TODO: add examples
 UCLASS()
 class UGooglePlayBillingSubsystem : public UGameInstanceSubsystem
