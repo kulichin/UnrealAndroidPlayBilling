@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- Add dependencies -->
+	<androidManifestUpdates>
+		<addPermission android:name="android.permission.INTERNET" />
+		<addPermission android:name="com.android.vending.BILLING" />
+	</androidManifestUpdates>
+
+	<!-- Copy Library directory & google-services.json -->
+	<gradleCopies>
+		<copyDir
+			src="$S(PluginDir)/ThirdParty/Android/GooglePlayBilling/"
+			dst="$S(BuildDir)/gradle/app/src/main/java/com/kulichin/googleplaybilling/" />
+	</gradleCopies>
+
+	<!-- Import dependencies -->
+	<AARImports>
+		<insertValue value="com.android.billingclient,billing,4.0.0" />
+		<insertNewline />
+	</AARImports>
+
+	<!--Enable AndroidX support-->
+	<gradleProperties>
+		<insert>
+			android.useAndroidX = true
+			android.enableJetifier = true
+		</insert>
+	</gradleProperties>
+
+	<!-- Replace supportlib imports with AndroidX in engine source files -->
+	<baseBuildGradleAdditions>
+		<insert>
+			allprojects
+			{
+				def mappings =
+				[
+					'android.arch.lifecycle.Lifecycle':                 'androidx.lifecycle.Lifecycle',
+					'android.arch.lifecycle.LifecycleObserver':         'androidx.lifecycle.LifecycleObserver',
+					'android.arch.lifecycle.OnLifecycleEvent':          'androidx.lifecycle.OnLifecycleEvent',
+					'android.arch.lifecycle.ProcessLifecycleOwner':     'androidx.lifecycle.ProcessLifecycleOwner',
+					'android.arch.lifecycle':                           'androidx.lifecycle',
+					'android.support.annotation':                       'androidx.annotation',
+					'android.support.v13.app.FragmentCompat':           'androidx.legacy.app.FragmentCompat',
+					'android.support.v4.app.ActivityCompat':            'androidx.core.app.ActivityCompat',
+					'android.support.v4.app.NotificationCompat':        'androidx.core.app.NotificationCompat',
+					'android.support.v4.app.NotificationManagerCompat': 'androidx.core.app.NotificationManagerCompat',
+					'android.support.v4.content.ContextCompat':         'androidx.core.content.ContextCompat',
+					'android.support.v4.content.FileProvider':          'androidx.core.content.FileProvider',
+
+					'constProduct.getSku()':							'constProduct.getSkus().get(0)',
+					'ownedProduct.getSku()':							'ownedProduct.getSkus().get(0)',
+					'purchase.getSku()':							    'purchase.getSkus().get(0)',
+				]
+
+				beforeEvaluate { project ->
+					project.rootProject.projectDir.traverse(type: groovy.io.FileType.FILES, nameFilter: ~/.*\.java$/) { f ->
+						mappings.each { entry ->
+							if (f.getText('UTF-8').contains(entry.key)) {
+								println "Updating ${entry.key} to ${entry.value} in file ${f}"
+								ant.replace(file: f, token: entry.key, value: entry.value)
+							}
+						}
+					}
+				}
+			}
+		</insert>
+	</baseBuildGradleAdditions>
+
+	<!-- Gradle additions -->
+	<buildGradleAdditions>
+		<insert>
+			android
+			{
+				compileOptions
+				{
+					targetCompatibility JavaVersion.VERSION_1_8
+					sourceCompatibility JavaVersion.VERSION_1_8
+				}
+			}
+		</insert>
+	</buildGradleAdditions>
+
+	<!-- ProGuard additions -->
+	<proguardAdditions>
+		<insert>
+			-dontwarn com.kulichin.**
+			-keep class com.kulichin.** { *; }
+			-keep interface com.kulichin.** { *; }
+
+			-dontwarn com.android.billingclient.**
+			-keep class com.android.billingclient.** { *; }
+			-keep interface com.android.billingclient.** { *; }
+		</insert>
+	</proguardAdditions>
+
+	<!-- GameActivity.java additions -->
+	<gameActivityImportAdditions>
+		<insert>
+			import com.kulichin.googleplaybilling.GooglePlayBilling;
+		</insert>
+	</gameActivityImportAdditions>
+
+	<!-- GameActivity.java additions -->
+	<gameActivityOnCreateAdditions>
+		<insert>
+			// Initialize billing class
+			PlayBilling = new GooglePlayBilling(this);
+		</insert>
+	</gameActivityOnCreateAdditions>
+
+	<!-- GameActivity.java additions -->
+	<gameActivityOnDestroyAdditions>
+		<insert>
+			PlayBilling.OnDestroy();
+		</insert>
+	</gameActivityOnDestroyAdditions>
+
+	<!-- GameActivity.java additions -->
+	<gameActivityClassAdditions>
+		<insert>
+			private GooglePlayBilling PlayBilling;
+			public void AndroidThunkJava_LaunchBillingFlow(String ProductID, int ProductType)
+			{
+				PlayBilling.LaunchBillingFlow(ProductID, ProductType);
+			}
+
+			public void AndroidThunkJava_LaunchPriceChangeConfirmationFlow(String ProductID, int ProductType)
+			{
+				PlayBilling.LaunchPriceChangeConfirmationFlow(ProductID, ProductType);
+			}
+
+			public void AndroidThunkJava_QueryPurchases(int ProductType)
+			{
+				PlayBilling.QueryPurchases(ProductType);
+			}
+
+			public void AndroidThunkJava_QuerySkuDetails(String[] ProductIDs, int ProductType)
+			{
+				PlayBilling.QuerySkuDetails(ProductIDs, ProductType);
+			}
+
+			public void AndroidThunkJava_QueryPurchaseHistory(int ProductType)
+			{
+				PlayBilling.QueryPurchaseHistory(ProductType);
+			}
+
+			public int AndroidThunkJava_IsFeatureSupported(int FeatureType)
+			{
+				return PlayBilling.IsFeatureSupported(FeatureType);
+			}
+
+			public boolean AndroidThunkJava_IsIAPInitialized()
+			{
+				return PlayBilling.IsIAPInitialized();
+			}
+
+			public boolean AndroidThunkJava_IsPurchased(String ProductID)
+			{
+				return PlayBilling.IsPurchased(ProductID);
+			}
+
+		</insert>
+	</gameActivityClassAdditions>
+
+</root>
