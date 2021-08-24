@@ -8,17 +8,23 @@
 	"CreatedBy": "Nikita Klimov",
 	"CreatedByURL": "https://github.com/kulichin",
 	"DocsURL": "https://github.com/kulichin/UnrealGooglePlayBilling/wiki",
-	"MarketplaceURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/eb120fd6077b4422aa421c484785139c",
 	"SupportURL": "https://github.com/kulichin/UnrealGooglePlayBilling/issues",
-	"CanContainContent": true,
+	"CanContainContent": false,
 	"IsBetaVersion": true,
 	"IsExperimentalVersion": false,
 	"Installed": false,
+	"EngineVersion": "4.26.0",
 	"Modules": [
 		{
 			"Name": "GooglePlayBilling",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Mac",
+				"Android"
+			]
 		}
 	]
 }
