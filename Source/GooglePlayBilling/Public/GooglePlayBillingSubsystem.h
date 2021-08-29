@@ -132,110 +132,110 @@ struct FSkuDetailsRecord
 	/**
 	 *	Returns a String in JSON format that contains SKU details.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString OriginalJSON;
 	
 	/**
 	 *	Returns the product Id.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString ProductID;
 	
 	/**
 	 *	Returns the of the product.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Type;
 	
 	/**
 	 *	Returns formatted price of the item, including its currency sign.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Price;
 	
 	/**
 	 *	Returns price in micro-units, where 1,000,000 micro-units equal
 	 *	one unit of the currency.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	int64 PriceAmountMicros;
 	
 	/**
 	 *	Returns ISO 4217 currency code for price and original price.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString PriceCurrencyCode;
 	
 	/**
 	 *	Returns formatted original price of the item, including its
 	 *	currency sign.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString OriginalPrice;
 	
 	/**
 	 *	Returns the original price in micro-units, where 1,000,000
 	 *	micro-units equal one unit of the currency.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	int64 OriginalPriceAmountMicros;
 	
 	/**
 	 *	Returns the title of the product being sold.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Title;
 	
 	/**
 	 *	Returns the description of the product.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Description;
 	
 	/**
 	 *	Subscription period, specified in ISO 8601 format.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString SubscriptionPeriod;
 	
 	/**
 	 *	Trial period configured in Google Play Console, specified in
 	 *	ISO 8601 format.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString FreeTrialPeriod;
 	
 	/**
 	 *	Formatted introductory price of a subscription, including its
 	 *	currency sign, such as €3.99.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString IntroductoryPrice;
 	
 	/**
 	 *	Introductory price in micro-units.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	int64 IntroductoryPriceAmountMicros;
 	
 	/**
 	 *	The billing period of the introductory price, specified in
 	 *	ISO 8601 format.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString IntroductoryPricePeriod;
 	
 	/**
 	 *	The number of subscription billing periods for which the user will
 	 *	be given the introductory price, such as 3.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	int IntroductoryPriceCycles;
 	
 	/**
 	 *	Returns the icon of the product if present.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString IconURL;
 };
 
@@ -247,42 +247,42 @@ struct FPurchaseRecordFromHistory
 	/**
 	 *	Returns the product Id.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
 	FString ProductID;
 	
 	/**
 	 *	Returns the time the product was purchased, in milliseconds since
 	 *	the epoch (Jan 1, 1970).
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
 	int64 PurchaseTime;
 	
 	/**
 	 *	Returns a token that uniquely identifies a purchase for a given
 	 *	item and user pair.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
 	FString PurchaseToken;
 	
 	/**
 	 *	Returns the payload specified when the purchase was acknowledged or
 	 *	consumed.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
 	FString DeveloperPayload;
 	
 	/**
 	 *	Returns a String in JSON format that contains details about the
 	 *	purchase order.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
 	FString OriginalJSON;
 	
 	/**
 	 *	Returns String containing the signature of the purchase data
 	 *	that was signed with the private key of the developer.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
 	FString Signature;
 };
 
@@ -294,84 +294,84 @@ struct FPurchaseRecord
 	/**
 	 *	Returns a unique order identifier for the transaction.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString OrderID;
 	
 	/**
 	 *	Returns the application package from which the purchase originated.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString PackageName;
 	
 	/**
 	 *	Returns the product Id.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString ProductID;
 	
 	/**
 	 *	Returns the time the product was purchased, in milliseconds since
 	 *	the epoch (Jan 1, 1970).
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	int64 PurchaseTime;
 	
 	/**
 	 *	Returns a token that uniquely identifies a purchase for a given
 	 *	item and user pair.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString PurchaseToken;
 	
 	/**
 	 *	Returns PurchaseState indicating the state of the purchase.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	TEnumAsByte<EPurchaseState> PurchaseState;
 	
 	/**
 	 *	Returns the payload specified when the purchase was acknowledged or
 	 *	consumed.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString DeveloperPayload;
 	
 	/**
 	 *	Indicates whether the purchase has been acknowledged.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	bool bAcknowledged;
 	
 	/**
 	 *	Indicates whether the subscription renews automatically.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	bool bAutoRenewing;
 	
 	/**
 	 *	Returns a String in JSON format that contains details about the
 	 *	purchase order.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString OriginalJSON;
 	
 	/**
 	 *	Returns String containing the signature of the purchase data that
 	 *	was signed with the private key of the developer.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString Signature;
 	
 	/**
 	 *	The obfuscated account id.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString ObfuscatedAccountID;
 
 	/**
 	 *	The obfuscated profile id.
 	 */
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString ObfuscatedProfileID;
 };
 
