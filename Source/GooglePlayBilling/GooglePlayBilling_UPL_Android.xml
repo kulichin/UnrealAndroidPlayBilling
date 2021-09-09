@@ -12,7 +12,7 @@
 	<!-- Copy Library directory & google-services.json -->
 	<gradleCopies>
 		<copyDir
-			src="$S(PluginDir)/ThirdParty/Android/GooglePlayBilling/"
+			src="$S(PluginDir)/Android/GooglePlayBilling/"
 			dst="$S(BuildDir)/gradle/app/src/main/java/com/kulichin/googleplaybilling/" />
 	</gradleCopies>
 
