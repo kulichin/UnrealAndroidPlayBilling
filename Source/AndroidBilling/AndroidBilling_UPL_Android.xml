@@ -12,8 +12,8 @@
 	<!-- Copy Library directory & google-services.json -->
 	<gradleCopies>
 		<copyDir
-			src="$S(PluginDir)/Android/GooglePlayBilling/"
-			dst="$S(BuildDir)/gradle/app/src/main/java/com/kulichin/googleplaybilling/" />
+			src="$S(PluginDir)/Android/"
+			dst="$S(BuildDir)/gradle/app/src/main/java/com/kulichin/androidbilling/" />
 	</gradleCopies>
 
 	<!-- Import dependencies -->
@@ -99,7 +99,7 @@
 	<!-- GameActivity.java additions -->
 	<gameActivityImportAdditions>
 		<insert>
-			import com.kulichin.googleplaybilling.GooglePlayBilling;
+			import com.kulichin.androidbilling.AndroidBilling;
 		</insert>
 	</gameActivityImportAdditions>
 
@@ -107,7 +107,7 @@
 	<gameActivityOnCreateAdditions>
 		<insert>
 			// Initialize billing class
-			PlayBilling = new GooglePlayBilling(this);
+			PlayBilling = new AndroidBilling(this);
 		</insert>
 	</gameActivityOnCreateAdditions>
 
@@ -121,7 +121,7 @@
 	<!-- GameActivity.java additions -->
 	<gameActivityClassAdditions>
 		<insert>
-			private GooglePlayBilling PlayBilling;
+			private AndroidBilling PlayBilling;
 			public void AndroidThunkJava_LaunchBillingFlow(String ProductID, int ProductType)
 			{
 				PlayBilling.LaunchBillingFlow(ProductID, ProductType);

@@ -4,14 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "GooglePlayBillingSettings.generated.h"
+#include "AndroidBillingSettings.generated.h"
 
 UCLASS(transient, config = Engine)
-class UGooglePlayBillingSettings : public UObject
+class UAndroidBillingSettings : public UObject
 {
 	GENERATED_BODY()
 
-	UPROPERTY(Config, EditAnywhere, Category = "Google Billing")
+	UPROPERTY(Config, EditAnywhere, Category = "Android Billing")
 	FString BillingLicenseKey;
 
 #if WITH_EDITOR

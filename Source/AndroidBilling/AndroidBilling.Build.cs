@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class GooglePlayBilling : ModuleRules
+public class AndroidBilling : ModuleRules
 {
-	public GooglePlayBilling(ReadOnlyTargetRules Target) : base(Target)
+	public AndroidBilling(ReadOnlyTargetRules Target) : base(Target)
 	{
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine" });
@@ -13,7 +13,7 @@ public class GooglePlayBilling : ModuleRules
         if (Target.Platform == UnrealTargetPlatform.Android)
         {
             PrivateDependencyModuleNames.Add("Launch");
-            AdditionalPropertiesForReceipt.Add("AndroidPlugin", System.IO.Path.Combine(PluginPath, "GooglePlayBilling_UPL_Android.xml"));
+            AdditionalPropertiesForReceipt.Add("AndroidPlugin", System.IO.Path.Combine(PluginPath, "AndroidBilling_UPL_Android.xml"));
         }
     }
 }

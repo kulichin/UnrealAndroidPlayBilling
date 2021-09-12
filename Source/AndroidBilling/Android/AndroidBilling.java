@@ -1,6 +1,6 @@
 // Copyright (C) 2021. Nikita Klimov. All rights reserved.
 
-package com.kulichin.googleplaybilling;
+package com.kulichin.androidbilling;
 
 import android.app.Activity;
 
@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class GooglePlayBilling
+public class AndroidBilling
 {
     public static native void NativeCompleteOperation(int ResponseCode, String ResponseMessage);
     public static native void NativeCompleteLaunchBillingFlow(
@@ -216,7 +216,7 @@ public class GooglePlayBilling
     private final HashMap<String, PurchaseRecord> PurchaseRecords = new HashMap<>();
     private final BillingClient AppBillingClient;
 
-	public GooglePlayBilling(Activity GameActivity)
+	public AndroidBilling(Activity GameActivity)
 	{
 		this.GameActivity = GameActivity;
 

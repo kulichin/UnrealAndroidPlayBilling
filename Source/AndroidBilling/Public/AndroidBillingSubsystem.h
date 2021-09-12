@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "GooglePlayBillingSubsystem.generated.h"
+#include "AndroidBillingSubsystem.generated.h"
 
 UENUM(BlueprintType)
 enum EBillingResponseCode
@@ -421,7 +421,7 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(
 
 // TODO: add examples
 UCLASS()
-class UGooglePlayBillingSubsystem : public UGameInstanceSubsystem
+class UAndroidBillingSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 
