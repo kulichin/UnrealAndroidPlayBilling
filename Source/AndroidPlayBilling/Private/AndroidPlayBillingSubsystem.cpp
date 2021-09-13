@@ -440,7 +440,7 @@ bool UAndroidPlayBillingSubsystem::IsPurchased(const FString& ProductID)
 }
 
 #if PLATFORM_ANDROID
-JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeInitialize(
+JNI_METHOD void Java_com_kulichin_androidplaybilling_AndroidPlayBilling_NativeInitialize(
 	JNIEnv* Env, 
 	jobject Thiz,
 	jclass SkuDetailsRecordClass,
@@ -500,7 +500,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeInitialize
 	IsPurchased_MethodID						= FindMethod(Env, "AndroidThunkJava_IsPurchased",							"(Ljava/lang/String;)Z");
 }
 
-JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteOperation(
+JNI_METHOD void Java_com_kulichin_androidplaybilling_AndroidPlayBilling_NativeCompleteOperation(
 	JNIEnv* Env, 
 	jobject Thiz, 
 	jint ResponseCode,
@@ -516,7 +516,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteOp
 	}
 }
 
-JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteLaunchBillingFlow(
+JNI_METHOD void Java_com_kulichin_androidplaybilling_AndroidPlayBilling_NativeCompleteLaunchBillingFlow(
 	JNIEnv* Env, 
 	jobject Thiz, 
 	jint ResponseCode,
@@ -546,7 +546,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteLa
 	}
 }
 
-JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQueryPurchaseHistory(
+JNI_METHOD void Java_com_kulichin_androidplaybilling_AndroidPlayBilling_NativeCompleteQueryPurchaseHistory(
 	JNIEnv* Env, 
 	jobject Thiz, 
 	jint ResponseCode,
@@ -576,7 +576,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQu
 	}
 }
 
-JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQuerySkuDetails(
+JNI_METHOD void Java_com_kulichin_androidplaybilling_AndroidPlayBilling_NativeCompleteQuerySkuDetails(
 	JNIEnv* Env, 
 	jobject Thiz, 
 	jint ResponseCode,
@@ -606,7 +606,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQu
 	}
 }
 
-JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQueryPurchases(
+JNI_METHOD void Java_com_kulichin_androidplaybilling_AndroidPlayBilling_NativeCompleteQueryPurchases(
 	JNIEnv* Env, 
 	jobject Thiz, 
 	jint ResponseCode,
