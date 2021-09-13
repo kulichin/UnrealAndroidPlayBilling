@@ -13,7 +13,7 @@
 	<gradleCopies>
 		<copyDir
 			src="$S(PluginDir)/Android/"
-			dst="$S(BuildDir)/gradle/app/src/main/java/com/kulichin/androidbilling/" />
+			dst="$S(BuildDir)/gradle/app/src/main/java/com/kulichin/androidplaybilling/" />
 	</gradleCopies>
 
 	<!-- Import dependencies -->
@@ -99,7 +99,7 @@
 	<!-- GameActivity.java additions -->
 	<gameActivityImportAdditions>
 		<insert>
-			import com.kulichin.androidbilling.AndroidBilling;
+			import com.kulichin.androidplaybilling.AndroidPlayBilling;
 		</insert>
 	</gameActivityImportAdditions>
 
@@ -107,7 +107,7 @@
 	<gameActivityOnCreateAdditions>
 		<insert>
 			// Initialize billing class
-			PlayBilling = new AndroidBilling(this);
+			PlayBilling = new AndroidPlayBilling(this);
 		</insert>
 	</gameActivityOnCreateAdditions>
 
@@ -121,7 +121,7 @@
 	<!-- GameActivity.java additions -->
 	<gameActivityClassAdditions>
 		<insert>
-			private AndroidBilling PlayBilling;
+			private AndroidPlayBilling PlayBilling;
 			public void AndroidThunkJava_LaunchBillingFlow(String ProductID, int ProductType)
 			{
 				PlayBilling.LaunchBillingFlow(ProductID, ProductType);

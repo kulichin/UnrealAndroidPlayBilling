@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "AndroidBillingSubsystem.h"
+#include "AndroidPlayBillingSubsystem.h"
 #include "Engine.h"
 
 #define INITIALIZE_DELEGATE_HANDLER_Base(DelegateClass, DelegateName)	\
@@ -57,12 +57,12 @@ public:																	\
 		}																														\
 	}
 
-class FAndroidBillingModule : public IModuleInterface
+class FAndroidPlayBillingModule : public IModuleInterface
 {
 public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	static FAndroidBillingModule* GetModule();
+	static FAndroidPlayBillingModule* GetModule();
 
 #if PLATFORM_ANDROID
 	INITIALIZE_DELEGATE_HANDLER_TwoParams(

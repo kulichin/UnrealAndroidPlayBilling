@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Android Play Billing",
+	"Description": "Android Play Billing plugin for Unreal Engine provides Google Play Billing methods for buying consumable, non-consumable products and subscriptions.",
+	"Category": "Android",
+	"CreatedBy": "Nikita Klimov",
+	"CreatedByURL": "https://github.com/kulichin",
+	"DocsURL": "https://github.com/kulichin/UnrealAndroidPlayBilling/wiki",
+	"MarketplaceURL": "",
+	"SupportURL": "https://github.com/kulichin/UnrealAndroidPlayBilling/issues",
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EngineVersion": "4.26.0",
+	"Modules": [
+		{
+			"Name": "AndroidPlayBilling",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Mac",
+				"Android"
+			]
+		}
+	]
+}

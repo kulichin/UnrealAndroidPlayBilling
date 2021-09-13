@@ -1,10 +1,10 @@
 // Copyright (C) 2021. Nikita Klimov. All rights reserved.
 
-#include "AndroidBillingSubsystem.h"
+#include "AndroidPlayBillingSubsystem.h"
 
 #if PLATFORM_ANDROID
 
-#include "AndroidBilling.h"
+#include "AndroidPlayBilling.h"
 #include "Android/AndroidJNI.h"
 #include "Android/AndroidApplication.h"
 
@@ -271,7 +271,7 @@ FSkuDetailsRecord GetSkuDetailsRecordStructFromJavaObject(JNIEnv* Env, jobject O
 
 #endif
 
-void UAndroidBillingSubsystem::LaunchBillingFlow(
+void UAndroidPlayBillingSubsystem::LaunchBillingFlow(
 	FOnLaunchBillingFlowCompleted OnOperationResult,
 	const FString& ProductID,
 	const ESkuType ProductType)
@@ -279,7 +279,7 @@ void UAndroidBillingSubsystem::LaunchBillingFlow(
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+		if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 		{
 			// Bind callback
 			Module->AddOnLaunchBillingFlowCompleted_Handle(OnOperationResult);
@@ -297,7 +297,7 @@ void UAndroidBillingSubsystem::LaunchBillingFlow(
 #endif
 }
 
-void UAndroidBillingSubsystem::LaunchPriceChangeConfirmationFlow(
+void UAndroidPlayBillingSubsystem::LaunchPriceChangeConfirmationFlow(
 	FOnOperationCompleted OnOperationResult,
 	const FString& ProductID,
 	const ESkuType ProductType)
@@ -305,7 +305,7 @@ void UAndroidBillingSubsystem::LaunchPriceChangeConfirmationFlow(
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+		if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 		{
 			// Bind callback
 			Module->AddOnOperationCompleted_Handle(OnOperationResult);
@@ -323,14 +323,14 @@ void UAndroidBillingSubsystem::LaunchPriceChangeConfirmationFlow(
 #endif
 }
 
-void UAndroidBillingSubsystem::QueryPurchases(
+void UAndroidPlayBillingSubsystem::QueryPurchases(
 	FOnQueryPurchasesCompleted OnOperationResult,
 	const ESkuType ProductType)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+		if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 		{
 			// Bind callback
 			Module->AddOnQueryPurchasesCompleted_Handle(OnOperationResult);
@@ -342,7 +342,7 @@ void UAndroidBillingSubsystem::QueryPurchases(
 #endif
 }
 
-void UAndroidBillingSubsystem::QuerySkuDetails(
+void UAndroidPlayBillingSubsystem::QuerySkuDetails(
 	FOnQuerySkuDetailsCompleted OnOperationResult,
 	const TArray<FString>& ProductIDs,
 	const ESkuType ProductType)
@@ -350,7 +350,7 @@ void UAndroidBillingSubsystem::QuerySkuDetails(
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+		if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 		{
 			// Bind callback
 			Module->AddOnQuerySkuDetailsCompleted_Handle(OnOperationResult);
@@ -379,14 +379,14 @@ void UAndroidBillingSubsystem::QuerySkuDetails(
 #endif
 }
 
-void UAndroidBillingSubsystem::QueryPurchaseHistory(
+void UAndroidPlayBillingSubsystem::QueryPurchaseHistory(
 	FOnQueryPurchaseHistoryCompleted OnOperationResult,
 	const ESkuType ProductType)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+		if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 		{
 			// Bind callback
 			Module->AddOnQueryPurchaseHistoryCompleted_Handle(OnOperationResult);
@@ -398,7 +398,7 @@ void UAndroidBillingSubsystem::QueryPurchaseHistory(
 #endif
 }
 
-EBillingResponseCode UAndroidBillingSubsystem::IsFeatureSupported(const EFeatureType FeatureType)
+EBillingResponseCode UAndroidPlayBillingSubsystem::IsFeatureSupported(const EFeatureType FeatureType)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -411,7 +411,7 @@ EBillingResponseCode UAndroidBillingSubsystem::IsFeatureSupported(const EFeature
 	return EBillingResponseCode::SERVICE_UNAVAILABLE;
 }
 
-bool UAndroidBillingSubsystem::IsIAPInitialized()
+bool UAndroidPlayBillingSubsystem::IsIAPInitialized()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -424,7 +424,7 @@ bool UAndroidBillingSubsystem::IsIAPInitialized()
 	return false;
 }
 
-bool UAndroidBillingSubsystem::IsPurchased(const FString& ProductID)
+bool UAndroidPlayBillingSubsystem::IsPurchased(const FString& ProductID)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -506,7 +506,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteOp
 	jint ResponseCode,
 	jstring ResponseMessage)
 {
-	if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+	if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 	{
 		Module->TriggerOnOperationCompleted
 		(
@@ -524,7 +524,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteLa
 	jobjectArray Array,
 	jint ArraySize)
 {
-	if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+	if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 	{
 		// Convert java record
 		TArray<FPurchaseRecord> PurchaseRecords = {};
@@ -554,7 +554,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQu
 	jobjectArray Array,
 	jint ArraySize)
 {
-	if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+	if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 	{
 		// Convert java record
 		TArray<FPurchaseRecordFromHistory> PurchaseRecordsFromHistory = {};
@@ -584,7 +584,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQu
 	jobjectArray Array,
 	jint ArraySize)
 {
-	if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+	if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 	{
 		// Convert java record
 		TArray<FSkuDetailsRecord> SkuDetailsRecords = {};
@@ -614,7 +614,7 @@ JNI_METHOD void Java_com_kulichin_androidbilling_AndroidBilling_NativeCompleteQu
 	jobjectArray Array,
 	jint ArraySize)
 {
-	if (FAndroidBillingModule* Module = FAndroidBillingModule::GetModule())
+	if (FAndroidPlayBillingModule* Module = FAndroidPlayBillingModule::GetModule())
 	{
 		// Convert java record
 		TArray<FPurchaseRecord> PurchaseRecords = {};
