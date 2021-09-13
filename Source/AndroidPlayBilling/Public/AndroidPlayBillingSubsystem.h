@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "GooglePlayBillingSubsystem.generated.h"
+#include "AndroidPlayBillingSubsystem.generated.h"
 
 UENUM(BlueprintType)
 enum EBillingResponseCode
@@ -421,7 +421,7 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(
 
 // TODO: add examples
 UCLASS()
-class UGooglePlayBillingSubsystem : public UGameInstanceSubsystem
+class UAndroidPlayBillingSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 
@@ -433,7 +433,7 @@ public:
 	 *	@param ProductID specifies the ID of the item being purchased.
 	 *	@param ProductType specifies the Type of the item being purchased.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintCallable, Category = "AndroidPlayBilling")
 	static void LaunchBillingFlow(
 		FOnLaunchBillingFlowCompleted OnOperationResult,
 		const FString& ProductID,
@@ -447,7 +447,7 @@ public:
 	 *	@param ProductID specifies the ID of the item that has the pending price change. 
 	 *	@param ProductType specifies the Type of the item that has the pending price change.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintCallable, Category = "AndroidPlayBilling")
 	static void LaunchPriceChangeConfirmationFlow(
 		FOnOperationCompleted OnOperationResult,
 		const FString& ProductID,
@@ -460,7 +460,7 @@ public:
 	 *	@param OnOperationResult callback is called when operation has been completed.
 	 *	@param ProductType the type of the product.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintCallable, Category = "AndroidPlayBilling")
 	static void QueryPurchases(
 		FOnQueryPurchasesCompleted OnOperationResult,
 		const ESkuType ProductType);
@@ -475,7 +475,7 @@ public:
 	 *					  
 	 *	@param ProductType specifies the Type of the product to query.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintCallable, Category = "AndroidPlayBilling")
 	static void QuerySkuDetails(
 		FOnQuerySkuDetailsCompleted OnOperationResult,
 		const TArray<FString>& ProductIDs,
@@ -488,7 +488,7 @@ public:
 	 *	@param OnOperationResult callback is called when operation has been completed.
 	 *	@param ProductType the type of the product.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintCallable, Category = "AndroidPlayBilling")
 	static void QueryPurchaseHistory(
 		FOnQueryPurchaseHistoryCompleted OnOperationResult,
 		const ESkuType ProductType);
@@ -499,14 +499,14 @@ public:
 	 *
 	 *	@param FeatureType one of the EFeatureType constants.
 	 */
-	UFUNCTION(BlueprintPure, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintPure, Category = "AndroidPlayBilling")
 	static EBillingResponseCode IsFeatureSupported(const EFeatureType FeatureType);
 	
 	/**
 	 *	Checks if the client is currently connected to the service, so
 	 *	that requests to other methods will succeed.
 	 */
-	UFUNCTION(BlueprintPure, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintPure, Category = "AndroidPlayBilling")
 	static bool IsIAPInitialized();
 	
 	/**
@@ -514,6 +514,6 @@ public:
 	 *
 	 *	@param ProductID specifies the ID of the item.
 	 */
-	UFUNCTION(BlueprintPure, Category = "GooglePlayBilling")
+	UFUNCTION(BlueprintPure, Category = "AndroidPlayBilling")
 	static bool IsPurchased(const FString& ProductID);
 };
