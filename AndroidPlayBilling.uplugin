@@ -8,7 +8,7 @@
 	"CreatedBy": "Nikita Klimov",
 	"CreatedByURL": "https://github.com/kulichin",
 	"DocsURL": "https://github.com/kulichin/UnrealAndroidPlayBilling/wiki",
-	"MarketplaceURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/ad0040f7dbbc45cebdcbc4b2c5982904",
 	"SupportURL": "https://github.com/kulichin/UnrealAndroidPlayBilling/issues",
 	"CanContainContent": false,
 	"IsBetaVersion": true,
