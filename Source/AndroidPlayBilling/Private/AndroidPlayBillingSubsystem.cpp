@@ -65,6 +65,11 @@ static inline FScopedJavaObject<jstring> GetScopedStringFromObject(
 	jobject Object, 
 	jfieldID FieldID)
 {
+    if (FieldID == NULL)
+    {
+        return FScopedJavaObject<jstring>(Env, Env->NewStringUTF(""));
+    }
+
 	return NewScopedJavaObject(Env, (jstring) Env->GetObjectField(Object, FieldID));
 }
 
