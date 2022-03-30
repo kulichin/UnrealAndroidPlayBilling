@@ -484,16 +484,23 @@ public class AndroidPlayBilling
         Purchase.PurchasesResult SubscriptionsResult = QueryPurchasesInternal(PRODUCT_SUBS_ID);
         Purchase.PurchasesResult ProductsResult = QueryPurchasesInternal(PRODUCT_INAPP_ID);
 
-		// Handle purchases
-		for (Purchase Subscription : SubscriptionsResult.getPurchasesList())
-		{
-			HandlePurchaseInternal(Subscription);
-		}
+        // Iterating through the subscription's list if the list is valid
+        if (SubscriptionsResult.getPurchasesList() != null)
+        {
+            for (Purchase Subscription : SubscriptionsResult.getPurchasesList())
+            {
+                HandlePurchaseInternal(Subscription);
+            }
+        }
 
-		for (Purchase Product : ProductsResult.getPurchasesList())
-		{
-			HandlePurchaseInternal(Product);
-		}
+        // Iterating through the product's list if the list is valid
+        if (ProductsResult.getPurchasesList() != null)
+        {
+            for (Purchase Product : ProductsResult.getPurchasesList())
+            {
+                HandlePurchaseInternal(Product);
+            }
+        }
 	}
 
     private SkuDetails ConstructSkuDetailsInternal(String ProductID, int ProductType)
