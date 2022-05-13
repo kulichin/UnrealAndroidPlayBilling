@@ -5,6 +5,7 @@
 #include "AndroidPlayBillingSubsystem.h"
 #include "Engine.h"
 
+
 #define INITIALIZE_DELEGATE_HANDLER_Base(DelegateClass, DelegateName)	\
 public:																	\
 	DelegateClass DelegateName;											\
@@ -57,6 +58,7 @@ public:																	\
 		}																														\
 	}
 
+
 class FAndroidPlayBillingModule : public IModuleInterface
 {
 public:
@@ -65,33 +67,10 @@ public:
 	static FAndroidPlayBillingModule* GetModule();
 
 #if PLATFORM_ANDROID
-	INITIALIZE_DELEGATE_HANDLER_TwoParams(
-		FOnOperationCompleted, OnOperationCompleted,
-		const EBillingResponseCode, ResponseCode,
-		const FString&, ResponseMessage)
-	
-	INITIALIZE_DELEGATE_HANDLER_ThreeParams(
-		FOnLaunchBillingFlowCompleted, OnLaunchBillingFlowCompleted,
-		const EBillingResponseCode, ResponseCode,
-		const FString&, ResponseMessage,
-		const TArray<FPurchaseRecord>&, UpdatedPurchaseRecords);
-	
-	INITIALIZE_DELEGATE_HANDLER_ThreeParams(
-		FOnQueryPurchaseHistoryCompleted, OnQueryPurchaseHistoryCompleted,
-		const EBillingResponseCode, ResponseCode,
-		const FString&, ResponseMessage,
-		const TArray<FPurchaseRecordFromHistory>&, PurchaseRecordsFromHistory);
-	
-	INITIALIZE_DELEGATE_HANDLER_ThreeParams(
-		FOnQuerySkuDetailsCompleted, OnQuerySkuDetailsCompleted,
-		const EBillingResponseCode, ResponseCode,
-		const FString&, ResponseMessage,
-		const TArray<FSkuDetailsRecord>&, SkuDetailsRecords);
-	
-	INITIALIZE_DELEGATE_HANDLER_ThreeParams(
-		FOnQueryPurchasesCompleted, OnQueryPurchasesCompleted,
-		const EBillingResponseCode, ResponseCode,
-		const FString&, ResponseMessage,
-		const TArray<FPurchaseRecord>&, PurchaseRecords);
+	INITIALIZE_DELEGATE_HANDLER_TwoParams(FOnOperationCompleted,			  OnOperationCompleted,			   const EBillingResponseCode, ResponseCode, const FString&, ResponseMessage)
+	INITIALIZE_DELEGATE_HANDLER_ThreeParams(FOnLaunchBillingFlowCompleted,	  OnLaunchBillingFlowCompleted,	   const EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FPurchaseRecord>&, UpdatedPurchaseRecords);
+	INITIALIZE_DELEGATE_HANDLER_ThreeParams(FOnQueryPurchaseHistoryCompleted, OnQueryPurchaseHistoryCompleted, const EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FPurchaseRecordFromHistory>&, PurchaseRecordsFromHistory);
+	INITIALIZE_DELEGATE_HANDLER_ThreeParams(FOnQuerySkuDetailsCompleted,      OnQuerySkuDetailsCompleted,      const EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FSkuDetailsRecord>&, SkuDetailsRecords);
+	INITIALIZE_DELEGATE_HANDLER_ThreeParams(FOnQueryPurchasesCompleted,		  OnQueryPurchasesCompleted,       const EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FPurchaseRecord>&, PurchaseRecords);
 #endif
 };
