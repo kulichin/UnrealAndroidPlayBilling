@@ -6,6 +6,7 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "AndroidPlayBillingSubsystem.generated.h"
 
+
 UENUM(BlueprintType)
 enum EBillingResponseCode
 {
@@ -14,14 +15,10 @@ enum EBillingResponseCode
 	 */
 	BILLING_UNAVAILABLE		= 3		UMETA(DisplayName = "BillingUnavailable"),
 
-	/**
-	 *	Invalid arguments provided to the API.
-	 */
+	/** Invalid arguments provided to the API. */
 	DEVELOPER_ERROR			= 5		UMETA(DisplayName = "DeveloperError"),
 
-	/**
-	 *	Fatal error during the API action.
-	 */
+	/** Fatal error during the API action. */
 	ERROR					= 6		UMETA(DisplayName = "Error"),
 
 	/**
@@ -30,24 +27,16 @@ enum EBillingResponseCode
 	 */
 	FEATURE_NOT_SUPPORTED	= -2	UMETA(DisplayName = "FeatureNotSupported"),
 
-	/**
-	 *	Failure to purchase since item is already owned.
-	 */
+	/** Failure to purchase since item is already owned. */
 	ITEM_ALREADY_OWNED		= 7		UMETA(DisplayName = "ItemAlreadyOwned"),
 
-	/**
-	 *	Failure to consume since item is not owned.
-	 */
+	/** Failure to consume since item is not owned. */
 	ITEM_NOT_OWNED			= 8		UMETA(DisplayName = "ItemNotOwned"),
 
-	/**
-	 *	Requested product is not available for purchase.
-	 */
+	/** Requested product is not available for purchase. */
 	ITEM_UNAVAILABLE		= 4		UMETA(DisplayName = "ItemUnavailable"),
 
-	/**
-	 *	Success.
-	 */
+	/** Success. */
 	OK						= 0		UMETA(DisplayName = "OK"),
 
 	/**
@@ -62,43 +51,29 @@ enum EBillingResponseCode
 	 */
 	SERVICE_TIMEOUT			= -3	UMETA(DisplayName = "ServiceTimeout"),
 
-	/**
-	 *	Network connection is down.
-	 */
+	/** Network connection is down. */
 	SERVICE_UNAVAILABLE		= 2		UMETA(DisplayName = "ServiceUnavailable"),
 
-	/**
-	 *	User pressed back or canceled a dialog.
-	 */
+	/** User pressed back or canceled a dialog. */
 	USER_CANCELED			= 1		UMETA(DisplayName = "UserCanceled")
 };
 
 UENUM(BlueprintType)
 enum EFeatureType
 {
-	/**
-	 *	Purchase/query for in-app items on VR.
-	 */
+	/** Purchase/query for in-app items on VR. */
 	IN_APP_ITEMS_ON_VR			= 0 UMETA(DisplayName = "InAppPurchaseOnVR"),
 
-	/**
-	 *	Launch a price change confirmation flow.
-	 */
+	/** Launch a price change confirmation flow. */
 	PRICE_CHANGE_CONFIRMATION	= 1 UMETA(DisplayName = "PriceChangeConfirmation"),
 
-	/**
-	 *	Purchase/query for subscriptions.
-	 */
+	/** Purchase/query for subscriptions. */
 	SUBSCRIPTIONS				= 2 UMETA(DisplayName = "Subcriptions"),
 
-	/**
-	 *	Purchase/query for subscriptions on VR.
-	 */
+	/** Purchase/query for subscriptions on VR. */
 	SUBSCRIPTIONS_ON_VR			= 3 UMETA(DisplayName = "SubscriptionsOnVR"),
 
-	/**
-	 *	Subscriptions update/replace.
-	 */
+	/** Subscriptions update/replace. */
 	SUBSCRIPTIONS_UPDATE		= 4 UMETA(DisplayName = "SubscriptionsUpdate")
 };
 
@@ -113,14 +88,10 @@ enum EPurchaseState
 UENUM(BlueprintType)
 enum ESkuType
 {
-	/**
-	 *	A type of SKU for Android apps in-app products.
-	 */
+	/** A type of SKU for Android apps in-app products. */
 	INAPP	= 0 UMETA(DisplayName = "InAppProduct"),
 
-	/**
-	 *	A type of SKU for Android apps subscriptions.
-	 */
+	/** A type of SKU for Android apps subscriptions. */
 	SUBS	= 1 UMETA(DisplayName = "InAppSubscription")
 };
 
@@ -128,28 +99,22 @@ USTRUCT(BlueprintType)
 struct FSkuDetailsRecord
 {
 	GENERATED_BODY()
-	
-	/**
-	 *	Returns a String in JSON format that contains SKU details.
-	 */
+
+	FSkuDetailsRecord() = default;
+
+	/** Returns a String in JSON format that contains SKU details. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString OriginalJSON;
 	
-	/**
-	 *	Returns the product Id.
-	 */
+	/** Returns the product Id. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString ProductID;
 	
-	/**
-	 *	Returns the of the product.
-	 */
+	/** Returns the of the product. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Type;
 	
-	/**
-	 *	Returns formatted price of the item, including its currency sign.
-	 */
+	/** Returns formatted price of the item, including its currency sign. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Price;
 	
@@ -158,11 +123,9 @@ struct FSkuDetailsRecord
 	 *	one unit of the currency.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
-	int64 PriceAmountMicros;
+	int64 PriceAmountMicros = 0;
 	
-	/**
-	 *	Returns ISO 4217 currency code for price and original price.
-	 */
+	/** Returns ISO 4217 currency code for price and original price. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString PriceCurrencyCode;
 	
@@ -178,23 +141,17 @@ struct FSkuDetailsRecord
 	 *	micro-units equal one unit of the currency.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
-	int64 OriginalPriceAmountMicros;
+	int64 OriginalPriceAmountMicros = 0;
 	
-	/**
-	 *	Returns the title of the product being sold.
-	 */
+	/** Returns the title of the product being sold. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Title;
 	
-	/**
-	 *	Returns the description of the product.
-	 */
+	/** Returns the description of the product. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString Description;
 	
-	/**
-	 *	Subscription period, specified in ISO 8601 format.
-	 */
+	/** Subscription period, specified in ISO 8601 format. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString SubscriptionPeriod;
 	
@@ -212,11 +169,9 @@ struct FSkuDetailsRecord
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString IntroductoryPrice;
 	
-	/**
-	 *	Introductory price in micro-units.
-	 */
+	/** Introductory price in micro-units. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
-	int64 IntroductoryPriceAmountMicros;
+	int64 IntroductoryPriceAmountMicros = 0;
 	
 	/**
 	 *	The billing period of the introductory price, specified in
@@ -230,11 +185,9 @@ struct FSkuDetailsRecord
 	 *	be given the introductory price, such as 3.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
-	int IntroductoryPriceCycles;
+	int IntroductoryPriceCycles = 0;
 	
-	/**
-	 *	Returns the icon of the product if present.
-	 */
+	/** Returns the icon of the product if present. */
 	UPROPERTY(BlueprintReadOnly, Category = "SkuDetailsRecord")
 	FString IconURL;
 };
@@ -243,10 +196,10 @@ USTRUCT(BlueprintType)
 struct FPurchaseRecordFromHistory
 {
 	GENERATED_BODY()
-	
-	/**
-	 *	Returns the product Id.
-	 */
+
+	FPurchaseRecordFromHistory() = default;
+
+	/** Returns the product Id. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
 	FString ProductID;
 	
@@ -255,7 +208,7 @@ struct FPurchaseRecordFromHistory
 	 *	the epoch (Jan 1, 1970).
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecordFromHistory")
-	int64 PurchaseTime;
+	int64 PurchaseTime = 0;
 	
 	/**
 	 *	Returns a token that uniquely identifies a purchase for a given
@@ -290,22 +243,18 @@ USTRUCT(BlueprintType)
 struct FPurchaseRecord
 {
 	GENERATED_BODY()
-	
-	/**
-	 *	Returns a unique order identifier for the transaction.
-	 */
+
+	FPurchaseRecord() = default;
+
+	/** Returns a unique order identifier for the transaction. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString OrderID;
 	
-	/**
-	 *	Returns the application package from which the purchase originated.
-	 */
+	/** Returns the application package from which the purchase originated. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString PackageName;
 	
-	/**
-	 *	Returns the product Id.
-	 */
+	/** Returns the product Id. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString ProductID;
 	
@@ -314,7 +263,7 @@ struct FPurchaseRecord
 	 *	the epoch (Jan 1, 1970).
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
-	int64 PurchaseTime;
+	int64 PurchaseTime = 0;
 	
 	/**
 	 *	Returns a token that uniquely identifies a purchase for a given
@@ -323,30 +272,21 @@ struct FPurchaseRecord
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString PurchaseToken;
 	
-	/**
-	 *	Returns PurchaseState indicating the state of the purchase.
-	 */
+	/** Returns PurchaseState indicating the state of the purchase. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
-	TEnumAsByte<EPurchaseState> PurchaseState;
+	TEnumAsByte<EPurchaseState> PurchaseState = UNSPECIFIED_STATE;
 	
-	/**
-	 *	Returns the payload specified when the purchase was acknowledged or
-	 *	consumed.
-	 */
+	/** Returns the payload specified when the purchase was acknowledged or consumed. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString DeveloperPayload;
 	
-	/**
-	 *	Indicates whether the purchase has been acknowledged.
-	 */
+	/**	Indicates whether the purchase has been acknowledged. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
-	bool bAcknowledged;
+	bool bAcknowledged = false;
 	
-	/**
-	 *	Indicates whether the subscription renews automatically.
-	 */
+	/** Indicates whether the subscription renews automatically. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
-	bool bAutoRenewing;
+	bool bAutoRenewing = false;
 	
 	/**
 	 *	Returns a String in JSON format that contains details about the
@@ -362,64 +302,31 @@ struct FPurchaseRecord
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString Signature;
 	
-	/**
-	 *	The obfuscated account id.
-	 */
+	/** The obfuscated account id. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString ObfuscatedAccountID;
 
-	/**
-	 *	The obfuscated profile id.
-	 */
+	/** The obfuscated profile id. */
 	UPROPERTY(BlueprintReadOnly, Category = "PurchaseRecord")
 	FString ObfuscatedProfileID;
 };
 
-/**
- *	Operation delegate
- */
-DECLARE_DYNAMIC_DELEGATE_TwoParams(
-	FOnOperationCompleted,
-	EBillingResponseCode, ResponseCode,
-	const FString&, ResponseMessage);
+/** Operation delegate */
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnOperationCompleted, EBillingResponseCode, ResponseCode, const FString&, ResponseMessage);
 
-/**
- *	Launch Billing Flow delegate
- */
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(
-	FOnLaunchBillingFlowCompleted,
-	EBillingResponseCode, ResponseCode,
-	const FString&, ResponseMessage,
-	const TArray<FPurchaseRecord>&, UpdatedPurchaseRecords);
+/** Launch Billing Flow delegate */
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnLaunchBillingFlowCompleted, EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FPurchaseRecord>&, UpdatedPurchaseRecords);
 
-/**
- *	Query Purchase History delegate
- */
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(
-	FOnQueryPurchaseHistoryCompleted,
-	EBillingResponseCode, ResponseCode,
-	const FString&, ResponseMessage,
-	const TArray<FPurchaseRecordFromHistory>&, PurchaseRecordsFromHistory);
+/** Query Purchase History delegate */
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnQueryPurchaseHistoryCompleted, EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FPurchaseRecordFromHistory>&, PurchaseRecordsFromHistory);
 
-/**
- *	Query Sku Details delegate
- */
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(
-	FOnQuerySkuDetailsCompleted,
-	EBillingResponseCode, ResponseCode,
-	const FString&, ResponseMessage,
-	const TArray<FSkuDetailsRecord>&, SkuDetailsRecords);
+/** Query Sku Details delegate */
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnQuerySkuDetailsCompleted, EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FSkuDetailsRecord>&, SkuDetailsRecords);
 
-/**
- *	Query Purchase delegate
- */
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(
-	FOnQueryPurchasesCompleted,
-	EBillingResponseCode, ResponseCode,
-	const FString&, ResponseMessage,
-	const TArray<FPurchaseRecord>&, PurchaseRecords);
+/** Query Purchase delegate */
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnQueryPurchasesCompleted, EBillingResponseCode, ResponseCode, const FString&, ResponseMessage, const TArray<FPurchaseRecord>&, PurchaseRecords);
 
-// TODO: add examples
+
 UCLASS()
 class UAndroidPlayBillingSubsystem : public UGameInstanceSubsystem
 {
