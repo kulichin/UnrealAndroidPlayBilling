@@ -437,7 +437,7 @@ bool UAndroidPlayBillingSubsystem::IsPurchased(const FString& ProductID)
 		auto JProductID = FJavaHelper::ToJavaString(Env, ProductID);
 		
 		// Call Java method
-		return CallBooleanMethod(Env, IsIAPInitialized_MethodID, *JProductID);
+		return CallBooleanMethod(Env, IsPurchased_MethodID, *JProductID);
 	}
 #endif
 
